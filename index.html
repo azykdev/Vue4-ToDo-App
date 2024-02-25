@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://ez-css.now.sh" />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <style>
+      body {
+        font-family: monospace;
+        background: #222;
+        color: aliceblue;
+      }
+      ul, li {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        font-size: 15px;
+      }
+
+      li input {
+        display: inline-block; width: 20px; padding: 10px;
+      }
+
+      li button {
+        width: 100px;
+        text-align: center;
+        margin-left: 20px;
+      }
+
+      textarea {
+        font-size: 18px;
+        padding: 15px;
+        display: block;
+        background: aliceblue;
+        
+      }
+
+      a {
+        display: inline-block;
+        text-decoration: none;
+        color:crimson;
+        margin-left: 40px;
+      }
+
+      .btn {
+        font-size: 16px;
+        padding: 10px 0;
+        border-radius: 5px;
+        border: none;
+        background: #47c1be;
+        color: #333;
+      }
+
+      .done {
+        text-decoration: line-through;
+      }
+    </style>
+  </head>
+  <body>
+    <main id="app">
+      <h3>{{ title }}</h3>
+      <form @submit.prevent="addTodo">
+        <label for="newTodo"></label>
+        <textarea placeholder="Title" v-model="newTodo" ></textarea>
+        <button  class="btn" type="submit" style="width: 150px;">New Todo</button>
+      </form>
+      <button class="btn"  style="width: 150px;" @click="allDone">All done</button>
+      <hr>
+      <ul>
+        <li v-for="todo in todos" style="display: flex; align-items: center;">
+          <input type="checkbox" v-model="todo.done" >
+          <span :class="{done: todo.done}">{{todo.title}}</span>
+          <a href="#" @click="remove(todo)">Remove</a>
+        </li>
+      </ul>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>
